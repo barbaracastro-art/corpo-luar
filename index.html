@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#141218">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Corpo Luar</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icones/icone-192.png">
+<link rel="apple-touch-icon" href="icones/icone-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <button id="btAnterior" class="bt-icone" aria-label="Lunação anterior">‹</button>
+    <div class="titulo">
+      <h1 id="tituloLunacao">Lunação</h1>
+      <p id="subtituloLunacao"></p>
+    </div>
+    <button id="btProxima" class="bt-icone" aria-label="Próxima lunação">›</button>
+  </header>
+
+  <main id="palco"></main>
+
+  <footer class="rodape">
+    <div id="legenda" class="legenda"></div>
+    <div class="acoes">
+      <button id="btHoje">Hoje</button>
+      <button id="btConfig">Tópicos e dados</button>
+    </div>
+    <p id="aviso" class="aviso" hidden></p>
+  </footer>
+
+  <!-- Painel de registro do dia -->
+  <div id="painel" class="painel" hidden>
+    <div class="painel-fundo" data-fechar></div>
+    <section class="painel-caixa" role="dialog" aria-modal="true" aria-labelledby="painelTitulo">
+      <header class="painel-topo">
+        <div>
+          <h2 id="painelTitulo">Dia</h2>
+          <p id="painelSub"></p>
+        </div>
+        <button class="bt-icone" data-fechar aria-label="Fechar">×</button>
+      </header>
+      <div id="painelTopicos"></div>
+      <label class="nota">
+        <span>Observação do dia</span>
+        <textarea id="painelNota" rows="3" placeholder="Como foi o dia…"></textarea>
+      </label>
+      <div class="painel-acoes">
+        <button id="btLimparDia" class="bt-sec">Limpar dia</button>
+        <button data-fechar class="bt-pri">Pronto</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Tela de configuração -->
+  <div id="config" class="config" hidden>
+    <header class="config-topo">
+      <button id="btConfigCancelar" class="bt-texto">Cancelar</button>
+      <h2>Tópicos e dados</h2>
+      <button id="btConfigSalvar" class="bt-pri bt-peq">Salvar</button>
+    </header>
+    <div class="config-corpo">
+      <p class="explica">Até 10 tópicos. Cada um vira um anel do diagrama, na ordem abaixo (o primeiro é o mais interno).
+        A <b>intensidade</b> pinta a célula; os <b>símbolos</b> são observações e podem ser vários por dia.</p>
+      <div id="listaTopicos"></div>
+      <button id="btNovoTopico" class="bt-sec bt-largo">+ Novo tópico</button>
+
+      <h3 class="secao">Lua</h3>
+      <div class="linha-opcoes" role="radiogroup" aria-label="Hemisfério">
+        <label><input type="radio" name="hemisferio" value="sul"> Hemisfério sul</label>
+        <label><input type="radio" name="hemisferio" value="norte"> Hemisfério norte</label>
+      </div>
+
+      <h3 class="secao">Backup</h3>
+      <p class="explica">Os dados ficam só neste aparelho. Exporte de vez em quando para guardar uma cópia.
+        Importar substitui os tópicos e mescla os dias do arquivo.</p>
+      <div class="linha-opcoes">
+        <button id="btExportar" class="bt-sec">Exportar JSON</button>
+        <label class="bt-sec bt-arquivo">Importar JSON<input id="inImportar" type="file" accept="application/json,.json"></label>
+      </div>
+      <p id="infoArmazenamento" class="explica fraca"></p>
+    </div>
+  </div>
+
+  <!-- seletor de cor / símbolo (popover simples) -->
+  <div id="seletor" class="seletor" hidden>
+    <div class="seletor-fundo"></div>
+    <div class="seletor-caixa">
+      <p id="seletorTitulo"></p>
+      <div id="seletorGrade" class="seletor-grade"></div>
+      <div id="seletorExtra"></div>
+    </div>
+  </div>
+
+  <script src="p5.min.js"></script>
+  <script src="lunacao.js"></script>
+  <script src="dados.js"></script>
+  <script src="sketch.js"></script>
+  <script src="interface.js"></script>
+  <script src="configuracao.js"></script>
+  <script src="pwa.js"></script>
+</body>
+</html>
